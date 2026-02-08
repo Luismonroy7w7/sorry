@@ -77,8 +77,7 @@ button:hover{transform:scale(1.05);}
 
 <div class="container">
     <h1 id="title">¿Me perdonas? 🥺</h1>
-   <p id="text">Antes de seguir. Podrías reponder?🥺❤️.</p>
-
+    <p id="text">Antes de seguir… podrías responder? 🥺❤️</p>
 
     <div id="gameBtns">
         <button id="yesBtn">chi 💖</button>
@@ -103,22 +102,28 @@ const title=document.getElementById("title");
 const music=document.getElementById("music");
 
 const message=`Mi niña, sé que hice mal al no haberte respondido cuando debía.
- No hay excusas ni justificaciones para eso, y quiero que sepas que lo reconozco de corazón. 
- Entiendo que mi silencio pudo hacerte sentir ignorada, confundida o incluso lastimada, y la verdad es que nunca fue mi intención provocarte algo así.
+No hay excusas ni justificaciones para eso, y quiero que sepas que lo reconozco de corazón. 
+Entiendo que mi silencio pudo hacerte sentir ignorada, confundida o incluso lastimada, y la verdad es que nunca fue mi intención provocarte algo así.
 
 A veces uno se equivoca sin medir el impacto de sus acciones, pero eso no quita la responsabilidad. 
 Por eso quiero pedirte perdón con honestidad. Me importas más de lo que a veces sé demostrar, y justo por eso me duele haber fallado en algo tan simple como estar presente.
 
-
-Te prometo que no lo volveré a hacer. Voy a ser más atento, más claro y más consciente de lo que tú mereces. Gracias por tu paciencia conmigo, y por seguir aquí a pesar de mis errores. `;
+Te prometo que no lo volveré a hacer. Voy a ser más atento, más claro y más consciente de lo que tú mereces. 
+Gracias por tu paciencia conmigo, y por seguir aquí a pesar de mis errores.`;
 
 let i=0;
 
-noBtn.addEventListener("mouseover",()=>{
-    const x=Math.random()*200-100;
-    const y=Math.random()*200-100;
-    noBtn.style.transform=`translate(${x}px,${y}px)`;
-});
+// mover NO (PC + iPhone)
+function moveNo(){
+    const rect = document.querySelector('.container').getBoundingClientRect();
+    const x = Math.random()*(rect.width-120) - rect.width/2;
+    const y = Math.random()*(rect.height-120) - rect.height/2;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+noBtn.addEventListener("mouseover", moveNo);
+noBtn.addEventListener("touchstart", moveNo);
+noBtn.addEventListener("click", moveNo);
 
 yesBtn.addEventListener("click",()=>{
     title.innerText="🥹 Gracias…";
@@ -129,7 +134,7 @@ yesBtn.addEventListener("click",()=>{
 
 openLetter.addEventListener("click",()=>{
     music.play();
-    title.innerText="peldon, mi amor 🥺❤️";
+    title.innerText="Perdón, mi amor 🥺❤️";
     text.innerHTML="";
     openLetter.classList.add("hidden");
     typeWriter();
@@ -147,7 +152,7 @@ function typeWriter(){
 
 finalBtn.addEventListener("click",()=>{
     title.innerText="❤️";
-    text.innerText="Gracias por leerme. Te amo más de lo que puedo escribir.";
+    text.innerText="Gracias por leerme. Te amo más de lo que puedo escribir. 💕";
     finalBtn.classList.add("hidden");
     explodeHearts();
 });
